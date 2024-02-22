@@ -8,16 +8,16 @@ interface FormValues {
     email: string;
 }
 
+axios.defaults.baseURL = 'https://about-cv-backend.onrender.com';
+
 const Waitlist: React.FC = () => {
     const submitJoinWaitlist = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         try {
-            await axios.post('/api/submitForm', values);
+            await axios.post('/users/add-to-waitlist', values);
             console.log("Email sent successfully");
-            // Dodaj odpowiednie obsługiwanie sukcesu, np. wyświetlenie komunikatu
-            actions.resetForm(); // Opcjonalnie zresetuj formularz po udanej wysyłce
+            actions.resetForm();
         } catch (error) {
             console.error("Error sending email:", error);
-            // Dodaj odpowiednie obsługiwanie błędów, np. wyświetlenie komunikatu o błędzie
         }
     };
 
